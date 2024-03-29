@@ -12,7 +12,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			urlBase: "https://swapi.dev/api/",
+			characters: [],
+			starships: [],
+			planets: [],
+			likes: "favorites",
+			likesColor: "white"
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,6 +43,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			getCharacters: async () => {
+				try {					
+					const response = await fetch(`${getStore().urlBase}/people`)
+					const data = await response.json()
+					
+					if(response.ok){
+						setStore({ characters : data.results })
+					}
+				} catch (error) {
+					
+				}
+			},
+			getStarships: async () => {
+				try {
+					const response = await fetch(`${getStore().urlBase}/starships`)
+					const data = await response.json()
+
+					if(response.ok){
+						setStore({ starships : data.results })
+					}
+				} catch (error) {
+					
+				}
+			},
+			getPlanets: async () => {
+				try {
+					const response = await fetch(`${getStore().urlBase}/planets`)
+					const data = await response.json()
+					
+					if(response.ok){
+						setStore({ planets : data.results })
+					}
+				} catch (error) {
+					
+				}
+			},
+			likesColor: () => {
+				const store = getStore();
+
+				if(store.likesColor == "white"){
+					setStore({ likesColor: "red" })
+				}else{
+					setStore({likesColor: "white" })
+				}
+			},
+			likesCount: (itemName) => {
+				setStore({ likes: itemName })
 			}
 		}
 	};

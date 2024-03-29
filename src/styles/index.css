@@ -1,3 +1,16 @@
 /* 
     General Styles
 */
+.card {
+    min-width: 18rem;
+    margin: 5px;
+}
+.mycarrousel {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.buttons-footer {
+    display: flex;
+    justify-content: space-between;
+}
