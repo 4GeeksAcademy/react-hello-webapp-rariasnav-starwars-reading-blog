@@ -16,10 +16,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			urlBase: "https://swapi.dev/api/",
 			characters: [],
 			starships: [],
-			planets: [],
-			likes: [],
+			planets: [],			
 			favorites: [],
-			likesColor: ("white")
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -80,18 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					
 				}
-			},
-			likesColorChange: () => {
-				const store = getStore();
-				if( store.likesColor == "white" ){
-					//se cumple la condicion
-					setStore({ likesColor: "red" })
-				}else{
-					//no se cumple la condicion
-					setStore({ likesColor: "white" })
-				}
-				
-			},
+			},			
 			likesCount: (itemName) => {
 				const store = getStore()				
 				
