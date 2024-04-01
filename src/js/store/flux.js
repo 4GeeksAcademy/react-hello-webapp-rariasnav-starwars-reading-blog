@@ -17,8 +17,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			starships: [],
 			planets: [],
-			likes: "favorites",
-			likesColor: "white"
+			likes: [],
+			favorites: [],
+			likesColor: ("white")
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -80,17 +81,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 				}
 			},
-			likesColor: () => {
+			likesColorChange: () => {
 				const store = getStore();
-
-				if(store.likesColor == "white"){
+				if( store.likesColor == "white" ){
+					//se cumple la condicion
 					setStore({ likesColor: "red" })
 				}else{
-					setStore({likesColor: "white" })
+					//no se cumple la condicion
+					setStore({ likesColor: "white" })
 				}
+				
 			},
 			likesCount: (itemName) => {
-				setStore({ likes: itemName })
+				const store = getStore()				
+				
+				if( store.favorites.includes(itemName) ){
+					//si la condicion se cumple
+					setStore({ favorites: store.favorites.filter( (item)=> item !== itemName ) })
+				}else{
+					//si no se cumple la condicion
+					setStore({ favorites: [...store.favorites,itemName] })
+				}
+				
+			},
+			deleteLikes: (favorite) => {
+				const store = getStore();
+				setStore({ favorites: store.favorites.filter( (item)=> item !== favorite )})				
 			}
 		}
 	};

@@ -24,7 +24,7 @@ export const Home = () => {
 									<Link to={`/character-info/${character.name}`}>
 										<button type="button" className="btn btn-outline-primary">Learn more!</button>
 									</Link>									
-									<button type="button" className="btn btn-outline-warning"><i className="fa-regular fa-heart"></i></button>
+									<button type="button" className="btn btn-outline-warning" onClick={ ()=> actions.likesCount(character.name) }><i className="fa-regular fa-heart"></i></button>
 								</div>						
 							</div>
 						</div>
@@ -48,7 +48,7 @@ export const Home = () => {
 									<Link to={`/starship-info/${starship.name}`}>
 										<button type="button" className="btn btn-outline-primary">Learn more!</button>
 									</Link>									
-									<button type="button" className="btn btn-outline-warning"><i className="fa-regular fa-heart"></i></button>
+									<button type="button" className="btn btn-outline-warning" style={{ backgroundColor: ()=> store.likesColor }} onClick={ ()=> actions.likesCount(starship.name) }><i className="fa-regular fa-heart"></i></button>
 								</div>						
 							</div>
 						</div>
